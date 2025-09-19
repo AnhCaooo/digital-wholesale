@@ -7,9 +7,11 @@ import {
     Typography,
     Paper,
 } from "@mui/material";
+import type { LoginScreenProps } from "../../models/LoginScreen";
 
-export default function LoginScreen() {
-    const [clientCode, setClientCode] = useState("");
+export default function LoginScreen({setAccessToken}: LoginScreenProps) {
+
+    const [clientCode, setClientCode] = useState<string>("");
 
     // Memo that returns true if clientCode is having string
     const hasError = useMemo(() => clientCode.length > 0 && isNaN(Number(clientCode)), [clientCode]);
@@ -26,6 +28,8 @@ export default function LoginScreen() {
         console.log("Client code:", clientCode);
         // Send auth request to backend to authenticate and authorize user
         // After get response, navigate them to dashboard screen
+
+        setAccessToken(clientCode)
     };
 
     return (
