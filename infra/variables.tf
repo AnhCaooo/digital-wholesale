@@ -1,0 +1,76 @@
+##### 1. Resources #####
+variable "resource_group_name" {
+  type    = string
+  default = "rg_digital_wholesale"
+}
+
+variable "resource_group_location" {
+  type        = string
+  default     = "North Europe"
+  description = "Location of the resource group."
+}
+
+##### 2. Storage #####
+variable "sa_name" {
+  description = "The name of the storage account."
+  type        = string
+  default     = "sadigitalwholesale"
+}
+
+variable "sa_account_tier" {
+  description = "The tier of the storage account. Possible values are Standard and Premium."
+  type        = string
+  default     = "Standard"
+}
+
+variable "sa_account_replication_type" {
+  description = "The replication type of the storage account. Possible values are LRS, GRS, RAGRS, and ZRS."
+  type        = string
+  default     = "LRS"
+}
+
+variable "sc_name" {
+  description = "Name of storage container"
+  type        = string
+  default     = "scdigitalwholesale"
+}
+
+variable "ws_name" {
+  description = "The name of the Log Analytics workspace."
+  type        = string
+  default     = "lawdigitalwholesale"
+}
+
+variable "ai_name" {
+  description = "The name of the Application Insights instance."
+  type        = string
+  default     = "aidigitalwholesale"
+}
+
+##### 3. Service #####
+variable "sp_name" {
+  description = "The name of the App Service Plan."
+  type        = string
+  default     = "spdigitalwholesale"
+}
+
+##### 4. Function App #####
+variable "fa_name" {
+  description = "The name of the Function App."
+  type        = string
+  default     = "fadigitalwholesale"
+}
+
+variable "runtime_name" {
+  description = "The name of the language worker runtime."
+  type        = string
+  default     = "python" # Allowed: dotnet-isolated, java, node, powershell, python
+}
+
+variable "runtime_version" {
+  description = "The version of the language worker runtime."
+  type        = string
+  default     = "3.12" # Supported versions: see https://aka.ms/flexfxversions
+}
+
+
