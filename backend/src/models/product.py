@@ -9,7 +9,7 @@ class ProductColor(BaseModel):
 
 
 class ProductPrice(BaseModel):
-    """Represents types of product prices for a product. Currently is Wholesale and Retail price"""
+    """Represents types of product prices for a product. Currently is Wholesale and Retail price. Product Price could be different between different clients"""
 
     wholesale: float
     retail: float
