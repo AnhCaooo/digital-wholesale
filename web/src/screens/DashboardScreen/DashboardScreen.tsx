@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 
 async function fetchProducts(access_token: string): Promise<Product[]> {
-    const res = await fetch("http://localhost:7071/api/stocks", {
+    const res = await fetch("https://fadigitalwholesale.azurewebsites.net/api/stocks", {
         method: "GET",
         headers: {
             // "Content-Type": "application/json",

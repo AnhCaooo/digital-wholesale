@@ -16,7 +16,7 @@ import type { Credentials } from "../../models/auth/Auth";
  * @returns 
  */
 async function signIn(clientCode: string): Promise<Credentials>  {
-    return fetch("http://localhost:7071/api/auth/sign-in", {
+    return fetch("https://fadigitalwholesale.azurewebsites.net/api/auth/sign-in", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
