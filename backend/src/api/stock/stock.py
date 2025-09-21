@@ -53,7 +53,6 @@ def get_stocks(req: func.HttpRequest) -> func.HttpResponse:
                 if resource["client_code"] == client_code:
                     source = resource["source"]
                     # Read data from excel file
-                    logging.info(f"Reading stock data from {source}")
                     stock = xlrd.open_workbook(source)
                     sheet = stock.sheet_by_index(0)
                     # Get all header_keys values by reading the first row
@@ -61,7 +60,6 @@ def get_stocks(req: func.HttpRequest) -> func.HttpResponse:
                         sheet.cell(0, col_index).value
                         for col_index in range(sheet.ncols)
                     ]
-                    logging.debug(f"Header values: {header_keys}")
 
                     stock_list: list[Product] = []
                     for row_index in range(1, sheet.nrows):

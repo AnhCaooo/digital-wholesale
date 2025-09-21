@@ -17,14 +17,11 @@ def handle_sign_in(req: func.HttpRequest) -> func.HttpResponse:
     Returns:
         func.HttpResponse: An HTTP request object.
     """
-    logging.info("Received sign-in request")
-
     body = req.get_json()
     client_code = body.get("client_code")
     if client_code:
         # Validate the client code if it valid and exists in mock db. If not valid, return 401
         if any(client.code == client_code for client in CLIENT_DB):
-            logging.info(f"Client code {client_code} is valid")
             return func.HttpResponse(
                 body=json.dumps(
                     {

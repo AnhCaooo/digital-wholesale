@@ -25,3 +25,8 @@ deactivate
 ```bash
 pip install -r requirements.txt
 ```
+
+4. Run project locally 
+```bash
+func start 
+```
