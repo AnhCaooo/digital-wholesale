@@ -75,3 +75,18 @@ resource "azurerm_function_app_flex_consumption" "fa_digital_wholesale" {
 
   site_config {}
 }
+
+##### 5. Static Web App ##### 
+resource "azurerm_static_web_app" "swa_digital_wholesale" {
+  name                = var.swa_name
+  resource_group_name = azurerm_resource_group.rg_digital_wholesale.name
+  location            = azurerm_resource_group.rg_digital_wholesale.location
+
+  sku_tier = "Free"
+  sku_size = "Free"
+
+  tags = {
+    Environment = "Development"
+    Project     = "Digital Wholesale App"
+  }
+}

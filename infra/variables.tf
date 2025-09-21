@@ -6,7 +6,7 @@ variable "resource_group_name" {
 
 variable "resource_group_location" {
   type        = string
-  default     = "North Europe"
+  default     = "West Europe"
   description = "Location of the resource group."
 }
 
@@ -73,4 +73,9 @@ variable "runtime_version" {
   default     = "3.12" # Supported versions: see https://aka.ms/flexfxversions
 }
 
-
+##### 5. Static Web App #####
+variable "swa_name" {
+  description = "The name of static web app"
+  type        = string
+  default     = "swadigitalwholesale"
+}
