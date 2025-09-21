@@ -28,3 +28,12 @@ The app will be available at [http://localhost:5173](http://localhost:5173) by d
 3. There is 2 test users with these credentials: 
 - Client A - client code: 1609
 - Client B - client code: 2309
+
+## Out of scope:
+Due to this is not a PROD application, some following factors are ignored:  
+1. Credentials do not persist in web application which means after login, user closes the tab, then they need to login again. 
+2. UI components should be handle more graceful.
+3. Handle error cases such as: 
+    - fails to login should show dialog to indicate user what went wrong 
+    - fails to fetch products  
+4. Automation tests (unit tests and e2e tests) will be lacking
