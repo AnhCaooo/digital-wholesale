@@ -7,7 +7,25 @@ import {
     Typography,
     Paper,
 } from "@mui/material";
-import type { LoginScreenProps } from "../../models/LoginScreen";
+import type { LoginScreenProps } from "../../models/screens/LoginScreen";
+import type { Credentials } from "../../models/auth/Auth";
+
+/**
+ * Send auth request to backend to authenticate and authorize user
+ * @param clientCode 
+ * @returns 
+ */
+async function signIn(clientCode: string): Promise<Credentials>  {
+    return fetch("http://localhost:7071/api/auth/sign-in", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({"client_code": clientCode})
+    })
+    .then(res => res.json())
+    // todo: handle error response 
+}
 
 export default function LoginScreen({setAccessToken}: LoginScreenProps) {
 
@@ -23,13 +41,12 @@ export default function LoginScreen({setAccessToken}: LoginScreenProps) {
     );
 
     // Handle when user clicks on submit button
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log("Client code:", clientCode);
-        // Send auth request to backend to authenticate and authorize user
         // After get response, navigate them to dashboard screen
-
-        setAccessToken(clientCode)
+        const credentials = await signIn(clientCode)
+        setAccessToken(credentials.access_token)
     };
 
     return (
