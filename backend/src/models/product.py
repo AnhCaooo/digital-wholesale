@@ -1,18 +1,23 @@
 from pydantic import BaseModel
+
+
 class ProductColor(BaseModel):
     """Represents a product color with color ID and color value"""
 
     id: int
     value: str
 
+
 class ProductPrice(BaseModel):
     """Represents types of product prices for a product. Currently is Wholesale and Retail price"""
+
     wholesale: float
     retail: float
 
 
 class Product(BaseModel):
     """Represents details of a product"""
+
     id: int
     image_url: str
     name: str
@@ -21,6 +26,7 @@ class Product(BaseModel):
     color: ProductColor
     price: ProductPrice
     available_stock: int
+
 
 # todo: add validation
 # todo: add unit test
