@@ -1,7 +1,7 @@
 import azure.functions as func
 import logging
 import json
-from ...models import CLIENT_DB
+from ...models import CLIENT_DB, Product, cast_to_product
 import xlrd
 import os
 
@@ -56,13 +56,28 @@ def get_stocks(req: func.HttpRequest) -> func.HttpResponse:
                     # Read data from excel file 
                     logging.info(f"Reading stock data from {source}")
                     stock = xlrd.open_workbook(source)
-                    logging.info("The number of worksheets is {0}".format(stock.nsheets))
-                    logging.info("Worksheet name(s): {0}".format(stock.sheet_names()))
+                    sheet = stock.sheet_by_index(0)
+                    # Get all header_keys values by reading the first row
+                    header_keys = [
+                        sheet.cell(0, col_index).value 
+                        for col_index in range(sheet.ncols)
+                    ]
+                    logging.debug(f"Header values: {header_keys}")
+                
+                    stock_list: list[Product] = []
+                    for row_index in range(1, sheet.nrows):
+                        # 1. Loop through all columns in a row
+                        # 2. Get key name from header column
+                        # 3. Get value for specific row + column 
+                        d = {
+                            header_keys[col_index]: sheet.cell(row_index, col_index).value # (2): (3)
+                            for col_index in range(sheet.ncols) # (1)
+                        }
+                        product = cast_to_product(data=d)
+                        stock_list.append(product)
+
                     return func.HttpResponse(
-                        body=json.dumps({
-                            "access_token": client_code,
-                            "message": "ok"
-                        }),
+                        body=json.dumps([p.model_dump() for p in stock_list]),
                         status_code=200
                     )                
             logging.warning(f"Stock resource for client code {client_code} not found")
