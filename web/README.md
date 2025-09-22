@@ -29,6 +29,13 @@ The app will be available at [http://localhost:5173](http://localhost:5173) by d
 - Client A - client code: 1609
 - Client B - client code: 2309
 
+## Deploy to Azure 
+```bash 
+swa build 
+
+swa deploy ./dist --app-name <swa_name> --env default --deployment-token <deploytoken_get_from_terraform_output>
+```
+
 ## Out of scope:
 Due to this is not a PROD application, some following factors are ignored:  
 1. Credentials do not persist in web application which means after login, user closes the tab, then they need to login again. 

@@ -29,6 +29,8 @@ Each component has its own directory and dedicated README file with further setu
 - Having a serverless API (running with Azure Function App) + Python as a language 
 - Has Auth API (POST) to help user can sign in and see their own stuff based on their login code
 - Has Stock API (GET) to deliver user's data related to their stocks
+- How is the relationship between client and their stock/ price: each user has their own data (here we have each user has their own excel files) means that we bind client A to his data and same with client B. 
+Once client A login, backend return the token to web client (now just return a plain client code, but in good practices, we should return `access_token` probably in jwt) so that web can use it to deliver correct data for specific user.
 
 **Could be better:** 
 - Does not store the data in any DB, just read data from excel file. Therefore, does not cache data as well as the operation is pretty light
