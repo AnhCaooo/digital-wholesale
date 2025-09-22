@@ -30,3 +30,8 @@ pip install -r requirements.txt
 ```bash
 func start 
 ```
+
+### Deploy to Azure 
+```bash 
+func azure functionapp publish <fa_name> # fa_name need to be the same as the one we define in Terraform
+```
